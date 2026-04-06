@@ -32,7 +32,7 @@ export default function CardSearch({ onCardSelect, selectedSlot}) {
         <div style = {styles.container}>
             <p style = {styles.hint}>
                 {selectedSlot
-                    ? `Placing into slot $selectedSlot}`
+                    ? `Placing into slot ${selectedSlot}`
                     : "Select a slot first"}
             </p>
             <input

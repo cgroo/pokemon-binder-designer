@@ -1,6 +1,6 @@
 import BinderSlot from "./BinderSlot";
 
-export default function BinderGrid(){
+export default function BinderGrid({ slots, selectedSlot, onSlotSelect }){
     const rows = 3;
     const cols = 3;
     const grid = [];
@@ -15,7 +15,7 @@ export default function BinderGrid(){
                     key={slotID}
                     card={slots[slotID] || null}
                     isSelected={selectedSlot === slotID}
-                    onClick={() => setSelectedSlot(slotID)}
+                    onClick={() => onSlotSelect(slotID)}
                 />
             );
         }
