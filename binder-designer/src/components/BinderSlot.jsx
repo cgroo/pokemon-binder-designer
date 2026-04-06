@@ -1,17 +1,16 @@
-export default function BinderSlot() {
-    return (
-        <div style={styles.slot}>
-            {/*empty for now*/}
-        </div>
+export default function BinderSlot({ isSelected, onClick }) {
+    return(
+        <div
+            onClick={onClick}
+            style={{
+                width: "80px",
+                height: "110px",
+                border: isSelected ? "3px solid blue" : "2px solid #333",
+                borderRadius: "8px",
+                backgroundColor: isSelected ? "#dbeafe" : "#f5f5f5",
+                cursor: "pointer",
+                transition: "0.2s",
+            }}
+        />
     );
 }
-
-const styles = {
-    slot: {
-        width: "80px",
-        height: "110px",
-        border: "2px solid #333",
-        borderRadius: "8px",
-        backgroundColor: "#f5f5f5",
-    },
-};

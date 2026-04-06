@@ -1,19 +1,30 @@
 import BinderSlot from "./BinderSlot";
+import { useState } from "react";
 
 export default function BinderGrid(){
     const rows = 3;
     const cols = 3;
+    const [selectedSlot, setSelectedSlot] = useState(null);
     const grid = [];
 
-    for (let r = 0; r < rows; r++) {
+    for (let currRow = 0; currRow < rows; currRow++) {
         const row = [];
-        for (let c=0; c<cols; c++) {
-            row.push(<BinderSlot key={`${r}-${c}`} />);
+
+        for (let currCol = 0; currCol < cols; currCol++) {
+            const slotID = `${currRow}-${currCol}`;
+            row.push(
+                <BinderSlot
+                    key={slotID}
+                    isSelected={selectedSlot === slotID}
+                    onClick={() => setSelectedSlot(slotID)}
+                />
+            );
         }
+
         grid.push(
-            <div key={r} style={styles.row}>
+            <div key={currRow} style={styles.row}>
                 {row}
-            </div>
+             </div>
         );
     }
 
@@ -21,15 +32,15 @@ export default function BinderGrid(){
 }
 
 const styles = {
-  grid: {
-    display: "flex",
-    flexDirection: "column",
-    gap: "10px",
-    alignItems: "center",
-    marginTop: "40px",
-  },
-  row: {
-    display: "flex",
-    gap: "10px",
-  },
+    grid: {
+        display: "flex",
+        flexDirection: "column",
+        gap: "10px",
+        alignItems: "center",
+        marginTop: "40px",
+    },
+    row: {
+        display: "flex",
+        gap: "10px",
+    },
 };
