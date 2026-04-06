@@ -1,10 +1,8 @@
 import BinderSlot from "./BinderSlot";
-import { useState } from "react";
 
 export default function BinderGrid(){
     const rows = 3;
     const cols = 3;
-    const [selectedSlot, setSelectedSlot] = useState(null);
     const grid = [];
 
     for (let currRow = 0; currRow < rows; currRow++) {
@@ -15,6 +13,7 @@ export default function BinderGrid(){
             row.push(
                 <BinderSlot
                     key={slotID}
+                    card={slots[slotID] || null}
                     isSelected={selectedSlot === slotID}
                     onClick={() => setSelectedSlot(slotID)}
                 />
