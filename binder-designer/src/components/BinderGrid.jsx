@@ -17,7 +17,7 @@ export default function BinderGrid(){
         );
     }
 
-    return <div style={style.grid}>{grid}</div>;
+    return <div style={styles.grid}>{grid}</div>;
 }
 
 const styles = {
