@@ -9,7 +9,7 @@ export default function BinderGrid({ slots, selectedSlot, onSlotSelect }){
         const row = [];
 
         for (let currCol = 0; currCol < cols; currCol++) {
-            const slotID = `${currRow}-${currCol}`;
+            const slotID = `${currRow+1}-${currCol+1}`;
             row.push(
                 <BinderSlot
                     key={slotID}
