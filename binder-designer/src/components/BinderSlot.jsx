@@ -18,7 +18,7 @@ export default function BinderSlot({ card, isSelected, onClick }) {
         >
             {card?.image ? (
                 <img
-                    src = {`${card.image}/low.webp`}
+                    src = {`${card.image}/high.webp`}
                     alt = {card.name}
                     style = {{ width: "100%", height: "100%", objectFit: "cover"}}
                 />

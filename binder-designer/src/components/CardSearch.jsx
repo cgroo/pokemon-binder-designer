@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { searchCards } from "../api/tcgdex";
 
 export default function CardSearch({ onCardSelect, selectedSlot}) {
@@ -6,26 +6,32 @@ export default function CardSearch({ onCardSelect, selectedSlot}) {
     const [results, setResults] = useState([]);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
+    const debounceTimer = useRef(null);
 
     async function handleSearch(e) {
         const value = e.target.value;
         setQuery(value);
+
+        clearTimeout(debounceTimer.current);
 
         if(value.trim().length < 2) {
             setResults([]);
             return;
         }
 
-        try {
-            setLoading(true);
-            setError(null);
-            const cards = await searchCards(value);
-            setResults(cards);
-        } catch (err) {
-            setError("Search failed. Try Again.");
-        } finally {
-            setLoading(false);
-        }
+        debounceTimer.current = setTimeout(async () => {
+            try {
+                setLoading(true);
+                setError(null);
+                const cards = await searchCards(value);
+                console.log("Cards received in component:", cards);
+                setResults(cards);
+            } catch (err) {
+                setError("Search failed. Try again.");
+            } finally {
+                setLoading(false);
+            }
+        }, 400);
     }
 
     return (
